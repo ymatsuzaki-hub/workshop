@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ワークショップ事前アンケート｜環境新聞社</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;background:#F5F8FA;color:#042729;font-size:15px;line-height:1.7}
+.outer{max-width:680px;margin:0 auto;padding:2rem 1rem 4rem}
+.header{margin-bottom:1.5rem}
+.header h1{font-size:20px;font-weight:600;color:#042729;margin-bottom:0.25rem}
+.header p{font-size:13px;color:#6b8a8c}
+.progress-wrap{margin-bottom:2rem}
+.progress-bar{height:4px;background:#DDE5EE;border-radius:2px}
+.progress-fill{height:100%;background:#FF4800;border-radius:2px;transition:width 0.4s ease}
+.progress-label{font-size:12px;color:#6b8a8c;margin-top:6px;text-align:right}
+.card{background:#fff;border:1px solid #DDE5EE;border-radius:12px;padding:1.5rem;margin-bottom:1.25rem}
+.section-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.06em;padding:3px 10px;border-radius:20px;background:rgba(255,72,0,0.1);color:#FF4800;margin-bottom:0.75rem}
+.card h2{font-size:17px;font-weight:600;color:#042729;margin-bottom:0.35rem}
+.card .sub{font-size:13px;color:#4a6b6d;margin-bottom:1.25rem;line-height:1.6}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:13px;font-weight:600;color:#042729;margin-bottom:5px}
+.field input[type=text],.field textarea{width:100%;padding:10px 12px;font-size:14px;border:1px solid #DDE5EE;border-radius:8px;background:#fff;color:#042729;outline:none;transition:border-color 0.15s,box-shadow 0.15s;-webkit-appearance:none}
+.field input[type=text]:focus,.field textarea:focus{border-color:#FF4800;box-shadow:0 0 0 3px rgba(255,72,0,0.1)}
+.field textarea{resize:vertical;min-height:88px;line-height:1.6}
+.hint{font-size:12px;color:#6b8a8c;margin-top:4px;line-height:1.5}
+.char-count{font-size:11px;color:#9bb5b7;text-align:right;margin-top:3px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tag-group{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.tag{padding:6px 13px;font-size:13px;border:1px solid #DDE5EE;border-radius:20px;cursor:pointer;background:#fff;color:#042729;transition:all 0.15s;user-select:none}
+.tag:hover{border-color:#FF4800;color:#FF4800}
+.tag.on{border-color:#FF4800;background:rgba(255,72,0,0.07);color:#FF4800;font-weight:600}
+.opts{display:grid;gap:7px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:1px solid #DDE5EE;border-radius:8px;cursor:pointer;transition:all 0.15s;user-select:none;background:#fff}
+.opt:hover{border-color:#aac4c6;background:#f7fafb}
+.opt.on{border-color:#FF4800;background:rgba(255,72,0,0.04)}
+.dot{width:17px;height:17px;border-radius:50%;border:1.5px solid #c8d8da;flex-shrink:0;margin-top:2px;transition:all 0.15s;display:flex;align-items:center;justify-content:center}
+.opt.on .dot{border-color:#FF4800;background:#FF4800}
+.dot-inner{width:7px;height:7px;border-radius:50%;background:white;display:none}
+.opt.on .dot-inner{display:block}
+.chk{width:17px;height:17px;border-radius:4px;border:1.5px solid #c8d8da;flex-shrink:0;margin-top:2px;transition:all 0.15s;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;font-weight:700}
+.opt.on .chk{border-color:#FF4800;background:#FF4800;color:white}
+.opt-text{font-size:14px;color:#042729;line-height:1.4}
+.opt-text small{display:block;font-size:12px;color:#6b8a8c;margin-top:1px}
+.opts4{grid-template-columns:repeat(4,1fr)}
+.opts2{grid-template-columns:repeat(2,1fr)}
+.divider{border:none;border-top:1px solid #DDE5EE;margin:1.25rem 0}
+.table-wrap{overflow-x:auto;margin-bottom:6px}
+table.dt{width:100%;border-collapse:collapse;font-size:13px}
+table.dt th{background:#F5F8FA;padding:8px 10px;font-weight:600;font-size:12px;color:#4a6b6d;border:1px solid #DDE5EE;text-align:left;white-space:nowrap}
+table.dt td{border:1px solid #DDE5EE;padding:2px}
+table.dt td input{border:none;background:transparent;width:100%;padding:7px 9px;font-size:13px;color:#042729;outline:none}
+table.dt td input:focus{background:rgba(255,72,0,0.04)}
+.add-row-btn{font-size:13px;color:#FF4800;border:none;background:none;cursor:pointer;padding:5px 0;display:flex;align-items:center;gap:5px;margin-top:2px}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-top:2rem}
+.btn{padding:10px 22px;font-size:14px;font-weight:600;border-radius:8px;border:1.5px solid #DDE5EE;background:#fff;color:#042729;cursor:pointer;transition:all 0.15s}
+.btn:hover{background:#F5F8FA;border-color:#aac4c6}
+.btn-pri{background:#FF4800;border-color:#FF4800;color:white}
+.btn-pri:hover{background:#e04000;border-color:#e04000}
+.btn-dark{background:#042729;border-color:#042729;color:white}
+.btn-dark:hover{background:#021e20;border-color:#021e20}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.step{display:none}
+.step.active{display:block}
+.confirm-block{background:#F5F8FA;border-radius:8px;padding:0.85rem 1rem;margin-bottom:0.75rem}
+.confirm-block .cl{font-size:12px;color:#6b8a8c;margin-bottom:3px}
+.confirm-block .cv{font-size:14px;color:#042729;white-space:pre-wrap;line-height:1.5}
+.done-wrap{text-align:center;padding:2.5rem 1rem}
+.done-icon{width:56px;height:56px;border-radius:50%;background:rgba(255,72,0,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.done-icon svg{width:28px;height:28px;stroke:#FF4800;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.err-icon{width:56px;height:56px;border-radius:50%;background:rgba(220,53,69,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.err-icon svg{width:28px;height:28px;stroke:#dc3545;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.sending-overlay{display:none;position:fixed;inset:0;background:rgba(4,39,41,0.45);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+.sending-overlay.show{display:flex}
+.spinner{width:40px;height:40px;border:3px solid rgba(255,255,255,0.3);border-top-color:#FF4800;border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sending-overlay p{color:white;font-size:14px;font-weight:600}
+.hs-config-banner{background:#fffbe6;border:1px solid #ffe58f;border-radius:8px;padding:10px 14px;font-size:12px;color:#7d6608;margin-bottom:1.5rem;display:flex;gap:8px;align-items:flex-start;line-height:1.6}
+.hs-config-banner.hidden{display:none}
+.hs-config-banner strong{font-weight:700}
+.crisis-box{background:rgba(255,72,0,0.04);border:1px solid rgba(255,72,0,0.2);border-radius:8px;padding:1rem 1.1rem;margin-bottom:1.1rem;font-size:13px;color:#4a2010;line-height:1.6}
+.crisis-box strong{color:#FF4800}
+</style>
+</head>
+<body>
+
+<div class="sending-overlay" id="overlay">
+  <div class="spinner"></div>
+  <p>送信中...</p>
+</div>
+
+<div class="outer">
+  <div class="header">
+    <h1>ワークショップ事前アンケート</h1>
+    <p>環境新聞社 × HubSpot｜当日の議論をより深めるための事前準備です</p>
+  </div>
+
+  <div class="hs-config-banner" id="hs-banner">
+    ⚠️ <div><strong>HubSpot連携の設定が必要です。</strong><br>
+    このファイル先頭の <code>PORTAL_ID</code> と <code>FORM_GUID</code> を実際の値に書き換えてください。</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:9%"></div></div>
+    <div class="progress-label" id="prog-label">STEP 1 / 11</div>
+  </div>
+
+  <!-- ======================================================
+       Step 0: プロフィール
+  ====================================================== -->
+  <div class="step active" id="s0">
+    <div class="card">
+      <div class="section-badge">はじめに</div>
+      <h2>あなたのことを教えてください</h2>
+      <p class="sub">回答は匿名ではなく、当日のディスカッションで活用します。</p>
+      <div class="row2">
+        <div class="field"><label>お名前 <span style="color:#FF4800">*</span></label><input type="text" id="p_name" placeholder="例：田中 太郎"></div>
+        <div class="field"><label>メールアドレス <span style="color:#FF4800">*</span></label><input type="text" id="p_email" placeholder="例：tanaka@example.com"></div>
+      </div>
+      <div class="field"><label>役職・担当</label><input type="text" id="p_role" placeholder="例：編集長、営業担当"></div>
+      <div class="field">
+        <label>主に担当している媒体（複数可）</label>
+        <div class="tag-group" id="media_tags">
+          <div class="tag" onclick="this.classList.toggle('on')">環境新聞紙面</div>
+          <div class="tag" onclick="this.classList.toggle('on')">環境新聞オンライン</div>
+          <div class="tag" onclick="this.classList.toggle('on')">シルバー新報</div>
+          <div class="tag" onclick="this.classList.toggle('on')">月刊下水道</div>
+          <div class="tag" onclick="this.classList.toggle('on')">月刊ケアマネジメント</div>
+          <div class="tag" onclick="this.classList.toggle('on')">全社横断</div>
+          <div class="tag" onclick="this.classList.toggle('on')">その他</div>
+        </div>
+      </div>
+      <div class="field">
+        <label>勤続年数</label>
+        <div class="opts opts4">
+          <div class="opt" onclick="radio(this,'tenure')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-text">1年未満</div></div>
+          <div class="opt" onclick="radio(this,'tenure')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-text">1〜3年</div></div>
+          <div class="opt" onclick="radio(this,'tenure')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-text">4〜9年</div></div>
+          <div class="opt" onclick="radio(this,'tenure')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-text">10年以上</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 1: 危機感・変えなければならない理由
+  ====================================================== -->
+  <div class="step" id="s1">
+    <div class="card">
+      <div class="section-badge">ビジネス理解 — 01</div>
+      <h2>今のままでも会社は回る。それでも「変えなければ」と感じる理由は？</h2>
+      <p class="sub">正解はありません。日々感じていること、漠然とした不安でも構いません。率直に書いてください。</p>
+      <div class="crisis-box">
+        💡 ヒント：部数の変化、市場の変化、社内の雰囲気、競合の動き、読者層の変化…何でもOKです。
+      </div>
+      <div class="field">
+        <label>「変えなければ」と感じる場面や理由</label>
+        <textarea id="crisis1" placeholder="例：紙の部数が毎年じわじわ減っていて、このままだと5年後が怖い。でも具体的にどう変えればいいかわからない。" style="min-height:100px" oninput="cc(this,'cnt_cr1')"></textarea>
+        <div class="char-count" id="cnt_cr1">0 文字</div>
+      </div>
+      <div class="field">
+        <label>逆に「このままでも大丈夫」と思う理由も正直に（任意）</label>
+        <textarea id="crisis2" placeholder="例：長年の固定読者がいるので、すぐに経営危機になるとは思っていない。" oninput="cc(this,'cnt_cr2')"></textarea>
+        <div class="char-count" id="cnt_cr2">0 文字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 2: 顧客理解（3C①）
+  ====================================================== -->
+  <div class="step" id="s2">
+    <div class="card">
+      <div class="section-badge">ビジネス理解 — 02（3C：顧客）</div>
+      <h2>「この人たちのために存在している」と感じる顧客は？</h2>
+      <p class="sub">読者・広告主の中で、最も思い入れのある顧客像を描いてください。BtoB・BtoC、業種・規模・担当者の役職・何を求めているかで書いてみてください。</p>
+      <div class="field">
+        <label>顧客像①</label>
+        <textarea id="c1" placeholder="例：製造業の大企業・環境部門の担当者（BtoB）。GX対応で何をすべきか情報収集している。" oninput="cc(this,'cnt1')"></textarea>
+        <div class="char-count" id="cnt1">0 文字</div>
+      </div>
+      <div class="field">
+        <label>顧客像②（任意）</label>
+        <textarea id="c2" placeholder="例：自治体の環境担当部署。政策立案の根拠として専門情報を求めている。" oninput="cc(this,'cnt2')"></textarea>
+        <div class="char-count" id="cnt2">0 文字</div>
+      </div>
+      <div class="field">
+        <label>顧客像③（任意）</label>
+        <textarea id="c3" oninput="cc(this,'cnt3')"></textarea>
+        <div class="char-count" id="cnt3">0 文字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 3: サービス・マネタイズ（3C②）
+  ====================================================== -->
+  <div class="step" id="s3">
+    <div class="card">
+      <div class="section-badge">ビジネス理解 — 03（3C：自社サービス）</div>
+      <h2>提供しているサービス・商材と、売上の仕組みは？</h2>
+      <p class="sub">「何を売って、どこで稼いでいるか」を整理してください。担当媒体・業務の範囲で構いません。</p>
+      <div class="field">
+        <label>主な商材・サービス（複数可）</label>
+        <div class="tag-group" id="service_tags">
+          <div class="tag" onclick="this.classList.toggle('on')">紙の定期購読</div>
+          <div class="tag" onclick="this.classList.toggle('on')">Web有料会員</div>
+          <div class="tag" onclick="this.classList.toggle('on')">紙面広告</div>
+          <div class="tag" onclick="this.classList.toggle('on')">Web広告</div>
+          <div class="tag" onclick="this.classList.toggle('on')">イベント・セミナー</div>
+          <div class="tag" onclick="this.classList.toggle('on')">調査・レポート</div>
+          <div class="tag" onclick="this.classList.toggle('on')">タイアップ記事</div>
+          <div class="tag" onclick="this.classList.toggle('on')">その他</div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:0.75rem">
+        <label>売上の割合として、どの商材が一番大きいですか？</label>
+        <textarea id="monetize_main" placeholder="例：売上の約6割が紙の定期購読、残り3割が広告、1割がイベント収益。" oninput="cc(this,'cnt_mon')"></textarea>
+        <div class="char-count" id="cnt_mon">0 文字</div>
+      </div>
+      <div class="field">
+        <label>伸ばしたい・伸びそうと感じている収益源は？（任意）</label>
+        <textarea id="monetize_future" placeholder="例：Webの有料会員は伸びしろがあると感じているが、まだ全然手をつけられていない。" oninput="cc(this,'cnt_mf')"></textarea>
+        <div class="char-count" id="cnt_mf">0 文字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 4: 本質的な価値（3C③）
+  ====================================================== -->
+  <div class="step" id="s4">
+    <div class="card">
+      <div class="section-badge">ビジネス理解 — 04（3C：本質価値）</div>
+      <h2>御社のサービスで得られる「本質的な価値」は？</h2>
+      <p class="sub">「情報を届けている」以外の言葉で表現してみてください。顧客が本当に得ているもの（感情・社会的意味）を考えてみてください。</p>
+      <div class="field">
+        <label>あなたの言葉で自由に</label>
+        <textarea id="val1" placeholder="例：業界の中での「信頼の証明」。この新聞に載っていれば本物、という安心感を提供している。" style="min-height:100px" oninput="cc(this,'cnt_v1')"></textarea>
+        <div class="char-count" id="cnt_v1">0 文字</div>
+      </div>
+      <hr class="divider">
+      <div class="field">
+        <label>もし環境新聞社が廃刊になったら、読者は何を失うと思いますか？</label>
+        <p class="hint">この問いへの答えが、御社の本当の価値を映し出すかもしれません。</p>
+        <textarea id="val2" placeholder="例：業界全体の動向を俯瞰できる唯一の場所。廃刊になったら何を信じれば良いかわからなくなる。" style="min-height:88px;margin-top:8px" oninput="cc(this,'cnt_v2')"></textarea>
+        <div class="char-count" id="cnt_v2">0 文字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 5: 競合・代替手段・選ばれる理由と選ばれない理由（3C④⑤）
+  ====================================================== -->
+  <div class="step" id="s5">
+    <div class="card">
+      <div class="section-badge">ビジネス理解 — 05（3C：競合）</div>
+      <h2>競合・代替手段と、選ばれる理由・選ばれない理由</h2>
+      <p class="sub">御社が選ばれる場面と、選ばれない場面の両方を正直に教えてください。</p>
+      <div class="field">
+        <label>御社を選ばない場合、読者・広告主はどこに行くと思いますか？（複数可）</label>
+        <div class="opts" id="comp_opts">
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">日経ESG・業界専門誌<small>大手メディアの環境系コンテンツ</small></div></div>
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">業界団体・官公庁の広報<small>無料で入手できる公式情報</small></div></div>
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">SNS・Web検索（個人での情報収集）</div></div>
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">コンサル会社・シンクタンク<small>有料の専門調査・レポート</small></div></div>
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">その他</div></div>
+        </div>
+        <div style="margin-top:0.65rem">
+          <textarea id="comp_other_note" placeholder="上記以外に思い当たる行き先や、具体的なメディア・サービス名があれば教えてください。" style="min-height:72px" oninput="cc(this,'cnt_con')"></textarea>
+          <div class="char-count" id="cnt_con">0 文字</div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:1rem">
+        <label>御社が「選ばれる」と思う理由は？</label>
+        <textarea id="reason_chosen" placeholder="例：40年以上の取材で培った業界との信頼関係と、他では手に入らない現場の一次情報。" oninput="cc(this,'cnt_rc')"></textarea>
+        <div class="char-count" id="cnt_rc">0 文字</div>
+      </div>
+      <div class="field">
+        <label>逆に「選ばれない」と思う理由・弱みは？（率直に）</label>
+        <textarea id="reason_not_chosen" placeholder="例：Webの使いやすさで競合に劣る。若い世代の読者が少なく、購読者の高齢化が進んでいる。" oninput="cc(this,'cnt_rnc')"></textarea>
+        <div class="char-count" id="cnt_rnc">0 文字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 6: 強みの根幹・磨き方（3C⑥⑦）
+  ====================================================== -->
+  <div class="step" id="s6">
+    <div class="card">
+      <div class="section-badge">ビジネス理解 — 06（3C：強みの深掘り）</div>
+      <h2>強みの「根幹」と、それをさらに磨くには？</h2>
+      <p class="sub">表面的な「強み」の裏にある「仕組み・理由」まで掘り下げてください。</p>
+      <div class="field">
+        <label>御社が「絶対に真似できない」と思う強みは何ですか？</label>
+        <textarea id="strength" placeholder="例：40年以上の取材を通じて築いた、業界企業・行政との人脈と信頼関係。数字では測れないが、これが一番の差別化だと思う。" oninput="cc(this,'cnt_s')"></textarea>
+        <div class="char-count" id="cnt_s">0 文字</div>
+      </div>
+      <div class="field">
+        <label>その強みが「真似できない理由」は何だと思いますか？<br><span style="font-weight:400;color:#6b8a8c">（その強みを支えている仕組みや背景）</span></label>
+        <textarea id="strength_reason" placeholder="例：長年の取材で築いた記者と業界の個人的な信頼関係は、新参者がお金を出しても一夜にしては再現できない。" oninput="cc(this,'cnt_sr')"></textarea>
+        <div class="char-count" id="cnt_sr">0 文字</div>
+      </div>
+      <hr class="divider">
+      <div class="field">
+        <label>その強みをさらに磨くために必要なことは？または、弱みを克服するために何が必要だと思いますか？</label>
+        <textarea id="improve" placeholder="例：記者の取材ネットワークをデータとして蓄積・活用できていない。人に紐づいた資産を組織の資産にする仕組みが必要だと感じている。" style="min-height:100px" oninput="cc(this,'cnt_imp')"></textarea>
+        <div class="char-count" id="cnt_imp">0 文字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 7: 10年後のビジョン
+  ====================================================== -->
+  <div class="step" id="s7">
+    <div class="card">
+      <div class="section-badge">ビジネス理解 — 07</div>
+      <h2>10年後、どんな会社になっていたら「成功」ですか？</h2>
+      <p class="sub">正解はありません。個人として率直に書いてください。経営方針ではなく、あなた自身のイメージで構いません。</p>
+      <div class="field">
+        <label>10年後の理想像</label>
+        <textarea id="vision" placeholder="例：環境・介護分野の企業と自治体をつなぐプラットフォームになっていたら良いと思う。新聞という形にこだわらず、データやマッチングで価値を出している姿が理想。" style="min-height:110px" oninput="cc(this,'cnt_vis')"></textarea>
+        <div class="char-count" id="cnt_vis">0 文字</div>
+      </div>
+      <div class="field">
+        <label>そのためにいま変えるべきことは？（思ったことを率直に）</label>
+        <textarea id="change" placeholder="例：媒体ごとにバラバラに動いているので、もっと横連携できる仕組みが必要だと感じている。" oninput="cc(this,'cnt_ch')"></textarea>
+        <div class="char-count" id="cnt_ch">0 文字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 8: 媒体データ・会員管理方法
+  ====================================================== -->
+  <div class="step" id="s8">
+    <div class="card">
+      <div class="section-badge">業務理解 — 01</div>
+      <h2>媒体の基本データ・会員管理の実態</h2>
+      <p class="sub">わかる範囲で構いません。概数・「わからない」でもOKです。担当媒体のみ入力してください。</p>
+      <div class="table-wrap">
+        <table class="dt">
+          <thead>
+            <tr>
+              <th style="min-width:88px">媒体名</th>
+              <th style="min-width:72px">有料読者数</th>
+              <th style="min-width:72px">無料読者数</th>
+              <th style="min-width:65px">広告主数</th>
+              <th style="min-width:65px">担当人数</th>
+              <th style="min-width:55px">担当の役割</th>
+              <th style="min-width:110px">読者データ管理方法<br><span style="font-weight:400">(Excel/紙など)</span></th>
+              <th style="min-width:110px">広告主データ管理方法</th>
+            </tr>
+          </thead>
+          <tbody id="dtbody">
+            <tr>
+              <td><input type="text" value="環境新聞紙面" style="color:#042729"></td>
+              <td><input type="text" placeholder="例：1,200"></td>
+              <td><input type="text" placeholder="例：3,000"></td>
+              <td><input type="text" placeholder="例：80社"></td>
+              <td><input type="text" placeholder="例：3名"></td>
+              <td><input type="text" placeholder="例：編集2/営業1"></td>
+              <td><input type="text" placeholder="例：Excel"></td>
+              <td><input type="text" placeholder="例：Access"></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="環境新聞オンライン" style="color:#042729"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="シルバー新報" style="color:#042729"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="月刊下水道" style="color:#042729"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="月刊ケアマネジメント" style="color:#042729"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="add-row-btn" onclick="addRow()">＋ 媒体を追加</button>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 9: カスタマージャーニー・業務スケジュール
+  ====================================================== -->
+  <div class="step" id="s9">
+    <div class="card">
+      <div class="section-badge">業務理解 — 02</div>
+      <h2>顧客の入会経路と、日々の業務スケジュール</h2>
+      <p class="sub">「どうやって読者・広告主になるのか」と「1日の業務の流れ」を教えてください。</p>
+
+      <div class="field">
+        <label>読者・広告主はどのように貴社の会員・取引先になることが多いですか？（複数可）</label>
+        <div class="opts" id="route_opts">
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">既存読者・取引先からの紹介</div></div>
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">展示会・業界イベント</div></div>
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">Web検索・SNS経由</div></div>
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">営業担当の直接開拓</div></div>
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">記事掲載・プレスリリース</div></div>
+          <div class="opt" onclick="chk(this)"><div class="chk">✓</div><div class="opt-text">よくわからない・気づいたら来ていた</div></div>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:0.75rem">
+        <label>入会〜継続までの流れで「よく起きること」を教えてください（任意）</label>
+        <p class="hint">例：どのタイミングで解約が多いか、長く続く読者の特徴など</p>
+        <textarea id="journey_note" placeholder="例：展示会で名刺交換→無料お試し→3ヶ月後に有料転換、というパターンが多い。解約は更新月に集中する。" style="margin-top:6px" oninput="cc(this,'cnt_jn')"></textarea>
+        <div class="char-count" id="cnt_jn">0 文字</div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="field">
+        <label>あなたの「1日の業務スケジュール」を大まかに教えてください</label>
+        <p class="hint">時間帯と作業内容を書いてもらえると、当日の業務理解に役立ちます。</p>
+        <textarea id="daily_schedule" placeholder="例：9:00 メール確認・読者からの問い合わせ対応 / 10:00 記事編集・校正 / 13:00 広告主への営業連絡 / 15:00 読者名簿のExcel更新 / 17:00 翌日の取材準備" style="min-height:110px;margin-top:6px" oninput="cc(this,'cnt_ds')"></textarea>
+        <div class="char-count" id="cnt_ds">0 文字</div>
+      </div>
+
+      <div class="field">
+        <label>一番時間がかかっていて「しんどい」と感じる業務は？</label>
+        <textarea id="pain" placeholder="例：読者の住所変更・解約対応をすべて手作業でExcelに入力し直す作業。月末に集中して毎回2〜3日かかる。" oninput="cc(this,'cnt_pain')"></textarea>
+        <div class="char-count" id="cnt_pain">0 文字</div>
+      </div>
+      <div class="field">
+        <label>その業務は何年くらい同じやり方で続いていますか？</label>
+        <div class="opts opts4">
+          <div class="opt" onclick="radio(this,'yrs')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-text">1年未満</div></div>
+          <div class="opt" onclick="radio(this,'yrs')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-text">1〜3年</div></div>
+          <div class="opt" onclick="radio(this,'yrs')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-text">4〜9年</div></div>
+          <div class="opt" onclick="radio(this,'yrs')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-text">10年以上</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 10: 確認画面
+  ====================================================== -->
+  <div class="step" id="s10">
+    <div class="card">
+      <div class="section-badge">確認</div>
+      <h2>回答内容を確認してください</h2>
+      <p class="sub">送信後、HubSpotに記録され、ワークショップ当日に活用します。</p>
+      <div class="confirm-block"><div class="cl">回答者</div><div class="cv" id="cf_name">—</div></div>
+      <div class="confirm-block"><div class="cl">変えなければならない理由</div><div class="cv" id="cf_crisis">—</div></div>
+      <div class="confirm-block"><div class="cl">顧客像（1つ目）</div><div class="cv" id="cf_c1">—</div></div>
+      <div class="confirm-block"><div class="cl">御社の本質的な価値</div><div class="cv" id="cf_val">—</div></div>
+      <div class="confirm-block"><div class="cl">選ばれない理由・弱み</div><div class="cv" id="cf_weak">—</div></div>
+      <div class="confirm-block"><div class="cl">強みを磨くために必要なこと</div><div class="cv" id="cf_improve">—</div></div>
+      <div class="confirm-block"><div class="cl">10年後の理想像</div><div class="cv" id="cf_vis">—</div></div>
+      <div class="confirm-block"><div class="cl">一番しんどい業務</div><div class="cv" id="cf_pain">—</div></div>
+      <p style="font-size:12px;color:#6b8a8c;margin-top:1rem">※ 回答はHubSpotに自動記録され、松崎さんが当日のワークショップに活用します。</p>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       Step 11: 完了画面
+  ====================================================== -->
+  <div class="step" id="s11">
+    <div class="card">
+      <div class="done-wrap" id="done-success" style="display:none">
+        <div class="done-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:#042729;margin-bottom:0.5rem">送信完了しました</div>
+        <div style="font-size:14px;color:#4a6b6d;line-height:1.7;max-width:340px;margin:0 auto">
+          ご回答ありがとうございました。<br>当日のワークショップでお会いできることを楽しみにしています。
+        </div>
+      </div>
+      <div class="done-wrap" id="done-error" style="display:none">
+        <div class="err-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:#042729;margin-bottom:0.5rem">送信に失敗しました</div>
+        <div style="font-size:14px;color:#4a6b6d;line-height:1.7;max-width:360px;margin:0 auto" id="err-msg">しばらく経ってから再度お試しください。</div>
+        <button class="btn btn-pri" style="margin-top:1.5rem" onclick="goBack()">← 戻って再送信</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav" id="nav">
+    <button class="btn" id="btn_back" onclick="back()" style="visibility:hidden">← 戻る</button>
+    <button class="btn btn-pri" id="btn_next" onclick="next()">次へ →</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Google Apps Script 設定
+   GASをデプロイした後、発行されたURLをここに貼り付けてください
+   ============================================================ */
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbw58BlEninV5UxgDGMwv96ETrLYufTVlr-hnomFyEKRM6PV17wM88l8ScbMutrrZ3G8rw/exec';
+/* ============================================================
+   ステップ制御
+   ============================================================ */
+let cur = 0;
+const N = 12; // 0〜11
+const steps = document.querySelectorAll('.step');
+
+function upd() {
+  steps.forEach((s, i) => s.classList.toggle('active', i === cur));
+  document.getElementById('prog').style.width = ((cur + 1) / N * 100) + '%';
+  document.getElementById('prog-label').textContent = 'STEP ' + (cur + 1) + ' / ' + (N - 1);
+  document.getElementById('btn_back').style.visibility = cur === 0 ? 'hidden' : 'visible';
+  const bn = document.getElementById('btn_next');
+  if (cur === N - 2) {
+    bn.textContent = '送信する ✓';
+    bn.className = 'btn btn-dark';
+  } else if (cur === N - 1) {
+    document.getElementById('nav').style.display = 'none';
+  } else {
+    bn.textContent = '次へ →';
+    bn.className = 'btn btn-pri';
+  }
+}
+
+function next() {
+  if (cur === 0) {
+    if (!v('p_name')) { alert('お名前を入力してください。'); return; }
+    if (!v('p_email') || !v('p_email').includes('@')) { alert('正しいメールアドレスを入力してください。'); return; }
+  }
+  if (cur === N - 2) { fill(); submit(); return; }
+  if (cur < N - 1) { cur++; upd(); }
+}
+
+function back() { if (cur > 0) { cur--; upd(); } }
+function goBack() { cur = N - 2; upd(); }
+
+/* ============================================================
+   確認画面
+   ============================================================ */
+function fill() {
+  document.getElementById('cf_name').textContent    = (v('p_name') || '—') + '（' + (v('p_role') || '—') + '）';
+  document.getElementById('cf_crisis').textContent  = v('crisis1') || '—';
+  document.getElementById('cf_c1').textContent      = v('c1') || '—';
+  document.getElementById('cf_val').textContent     = v('val1') || '—';
+  document.getElementById('cf_weak').textContent    = v('reason_not_chosen') || '—';
+  document.getElementById('cf_improve').textContent = v('improve') || '—';
+  document.getElementById('cf_vis').textContent     = v('vision') || '—';
+  document.getElementById('cf_pain').textContent    = v('pain') || '—';
+}
+
+/* ============================================================
+   Google Apps Script 送信
+   ============================================================ */
+async function submit() {
+  if (GAS_URL === 'YOUR_GAS_WEBAPP_URL') {
+    alert('GASのURLがまだ設定されていません。\nHTMLファイル先頭の GAS_URL を書き換えてください。');
+    return;
+  }
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('btn_next').disabled = true;
+
+  // 全フィールドをオブジェクトにまとめる
+  const data = {
+    timestamp:              new Date().toLocaleString('ja-JP'),
+    name:                   v('p_name'),
+    email:                  v('p_email'),
+    role:                   v('p_role'),
+    media_in_charge:        [...document.querySelectorAll('#media_tags .tag.on')].map(t => t.textContent).join(', '),
+    tenure:                 getRadio('tenure'),
+    // ビジネス理解
+    crisis_reason:          v('crisis1'),
+    crisis_safe_reason:     v('crisis2'),
+    customer_profile_1:     v('c1'),
+    customer_profile_2:     v('c2'),
+    customer_profile_3:     v('c3'),
+    service_types:          [...document.querySelectorAll('#service_tags .tag.on')].map(t => t.textContent).join(', '),
+    monetize_main:          v('monetize_main'),
+    monetize_future:        v('monetize_future'),
+    core_value:             v('val1'),
+    value_if_closed:        v('val2'),
+    competitors:            [...document.querySelectorAll('#comp_opts .opt.on')].map(o => o.querySelector('.opt-text').childNodes[0].textContent.trim()).join(', '),
+    competitors_other:      v('comp_other_note'),
+    reason_chosen:          v('reason_chosen'),
+    reason_not_chosen:      v('reason_not_chosen'),
+    strength:               v('strength'),
+    strength_reason:        v('strength_reason'),
+    improve:                v('improve'),
+    vision_10yr:            v('vision'),
+    change_needed:          v('change'),
+    // 業務理解
+    media_data_table:       [...document.querySelectorAll('#dtbody tr')].map(tr => {
+                              const cells = [...tr.querySelectorAll('input')].map(i => i.value.trim());
+                              return cells.some(c => c) ? cells.join(' / ') : null;
+                            }).filter(Boolean).join('\n'),
+    acquisition_routes:     [...document.querySelectorAll('#route_opts .opt.on')].map(o => o.querySelector('.opt-text').childNodes[0].textContent.trim()).join(', '),
+    journey_note:           v('journey_note'),
+    daily_schedule:         v('daily_schedule'),
+    painful_task:           v('pain'),
+    painful_task_duration:  getRadio('yrs'),
+  };
+
+  try {
+    // GASはCORSの関係でno-corsで送信、レスポンスは受け取れないため成功とみなす
+    await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    document.getElementById('overlay').classList.remove('show');
+    cur = N - 1; upd();
+    document.getElementById('done-success').style.display = 'block';
+    document.getElementById('done-error').style.display = 'none';
+  } catch (e) {
+    document.getElementById('overlay').classList.remove('show');
+    cur = N - 1; upd();
+    document.getElementById('done-success').style.display = 'none';
+    document.getElementById('done-error').style.display = 'block';
+    document.getElementById('err-msg').textContent = 'ネットワークエラーが発生しました。接続状況を確認の上、再度お試しください。';
+  }
+}
+
+/* ============================================================
+   ユーティリティ
+   ============================================================ */
+function v(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function cc(el, id) { document.getElementById(id).textContent = el.value.length + ' 文字'; }
+function radio(el, g) {
+  document.querySelectorAll('[onclick*="radio"][onclick*="\'' + g + '\'"]').forEach(e => e.classList.remove('on'));
+  el.classList.add('on');
+}
+function getRadio(g) {
+  const el = document.querySelector('[onclick*="radio"][onclick*="\'' + g + '\'"].on');
+  return el ? el.querySelector('.opt-text').textContent.trim() : '';
+}
+function chk(el) { el.classList.toggle('on'); }
+function addRow() {
+  const tb = document.getElementById('dtbody');
+  const tr = document.createElement('tr');
+  for (let i = 0; i < 8; i++) {
+    const td = document.createElement('td');
+    const inp = document.createElement('input'); inp.type = 'text';
+    td.appendChild(inp); tr.appendChild(td);
+  }
+  tb.appendChild(tr);
+}
+
+// GAS URL未設定の場合は警告バナーを表示
+if (GAS_URL === 'YOUR_GAS_WEBAPP_URL') {
+  document.getElementById('hs-banner').innerHTML = '⚠️ <div><strong>GASのURLがまだ設定されていません。</strong><br>HTMLファイル先頭の <code>GAS_URL</code> を書き換えてください。</div>';
+} else {
+  document.getElementById('hs-banner').classList.add('hidden');
+}
+</script>
+</body>
+</html>
