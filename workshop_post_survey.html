@@ -281,7 +281,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
 </div>
 
 <script>
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwAt2pgNdurxebqR0D9ZrDtLmcoO3i8UpVlNwmvf-j-dKSgtLrVadgt7JZljsLFw2F2/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwAt2pgNdurxebqR0D9ZrDtLmcoO3i8UpVlNwmvf-j-dKSgtLrVadgt7JZIjsLFw2F2/exec';
 let cur = 0;
 const N = 9; // s0〜s8
 const steps = document.querySelectorAll('.step');
@@ -368,7 +368,7 @@ async function submit() {
     q6_hubspot:   document.getElementById('q6_text').value.trim(),
     q7_comment:   document.getElementById('q7_text').value.trim(),
   };
-  if (GAS_URL === 'https://script.google.com/macros/s/AKfycbwAt2pgNdurxebqR0D9ZrDtLmcoO3i8UpVlNwmvf-j-dKSgtLrVadgt7JZljsLFw2F2/exec') {
+  if (GAS_URL === 'https://script.google.com/macros/s/AKfycbwAt2pgNdurxebqR0D9ZrDtLmcoO3i8UpVlNwmvf-j-dKSgtLrVadgt7JZIjsLFw2F2/exec') {
     await new Promise(r => setTimeout(r, 600));
     document.getElementById('overlay').classList.remove('show');
     cur = N - 1; upd(); return;
