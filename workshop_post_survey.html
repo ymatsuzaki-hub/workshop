@@ -95,25 +95,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
     <div class="progress-label" id="prog-label">STEP 1 / 9</div>
   </div>
 
-  <!-- ===== Step 0: プロフィール ===== -->
   <div class="step active" id="s0">
     <div class="card">
       <h2>はじめに、あなたのことを教えてください</h2>
       <p class="sub">回答と紐づけて活用します。</p>
       <div class="row2">
-        <div class="field">
-          <label>姓<span class="required">*</span></label>
-          <input type="text" id="p_last" placeholder="例：田中">
-        </div>
-        <div class="field">
-          <label>名<span class="required">*</span></label>
-          <input type="text" id="p_first" placeholder="例：太郎">
-        </div>
+        <div class="field"><label>姓<span class="required">*</span></label><input type="text" id="p_last" placeholder="例：田中"></div>
+        <div class="field"><label>名<span class="required">*</span></label><input type="text" id="p_first" placeholder="例：太郎"></div>
       </div>
-      <div class="field">
-        <label>メールアドレス<span class="required">*</span></label>
-        <input type="text" id="p_email" placeholder="例：tanaka@kankyo-news.co.jp">
-      </div>
+      <div class="field"><label>メールアドレス<span class="required">*</span></label><input type="text" id="p_email" placeholder="例：tanaka@kankyo-news.co.jp"></div>
       <div class="field">
         <label>担当メディア（複数可）<span class="required">*</span></label>
         <div class="tag-group" id="media_tags">
@@ -129,7 +119,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
     </div>
   </div>
 
-  <!-- ===== Step 1: Q1 全体満足度 ===== -->
   <div class="step" id="s1">
     <div class="card">
       <h2>Q1. 今日のワークショップ全体を通じて、満足度はどのくらいでしたか？<span class="required">*</span></h2>
@@ -145,43 +134,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
     </div>
   </div>
 
-  <!-- ===== Step 2: Q2 一番刺さったパート ===== -->
   <div class="step" id="s2">
     <div class="card">
       <h2>Q2. 今日のワークの中で、最も「ハッとした」パートはどれでしたか？<span class="required">*</span></h2>
       <p class="sub">1つ選んでください。</p>
       <div class="opts" id="q2_opts">
-        <div class="opt" onclick="selectOpt(this,'q2_opts')">
-          <div class="dot"><div class="dot-inner"></div></div>
-          <div class="opt-main"><span class="opt-label lbl-0">0</span>アイスブレイク・事前回答共有<small>回答の傾向を見て気づいたこと</small></div>
-        </div>
-        <div class="opt" onclick="selectOpt(this,'q2_opts')">
-          <div class="dot"><div class="dot-inner"></div></div>
-          <div class="opt-main"><span class="opt-label lbl-1">①</span>メディアの方向性整理<small>顧客像・本質価値・ビジョンを言語化した</small></div>
-        </div>
-        <div class="opt" onclick="selectOpt(this,'q2_opts')">
-          <div class="dot"><div class="dot-inner"></div></div>
-          <div class="opt-main"><span class="opt-label lbl-2">②</span>業務課題の洗い出し<small>ペインポイントや優先課題を整理した</small></div>
-        </div>
-        <div class="opt" onclick="selectOpt(this,'q2_opts')">
-          <div class="dot"><div class="dot-inner"></div></div>
-          <div class="opt-main"><span class="opt-label lbl-3">③</span>企業価値創造ワークショップ<small>自社の強み・価値・可能性を再確認した</small></div>
-        </div>
-        <div class="opt" onclick="selectOpt(this,'q2_opts')">
-          <div class="dot"><div class="dot-inner"></div></div>
-          <div class="opt-main"><span class="opt-label lbl-c">✓</span>まとめ・ネクストステップ<small>合意事項と次のアクションが明確になった</small></div>
-        </div>
-        <div class="opt" onclick="selectOpt(this,'q2_opts');toggleInput('q2_other',this)">
-          <div class="dot"><div class="dot-inner"></div></div>
-          <div class="opt-main">その他</div>
-        </div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main"><span class="opt-label lbl-0">0</span>アイスブレイク・事前回答共有<small>回答の傾向を見て気づいたこと</small></div></div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main"><span class="opt-label lbl-1">①</span>メディアの方向性整理<small>顧客像・本質価値・ビジョンを言語化した</small></div></div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main"><span class="opt-label lbl-2">②</span>業務課題の洗い出し<small>ペインポイントや優先課題を整理した</small></div></div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main"><span class="opt-label lbl-3">③</span>企業価値創造ワークショップ<small>自社の強み・価値・可能性を再確認した</small></div></div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main"><span class="opt-label lbl-c">✓</span>まとめ・ネクストステップ<small>合意事項と次のアクションが明確になった</small></div></div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts');toggleInput('q2_other',this)"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main">その他</div></div>
       </div>
       <input type="text" id="q2_other" class="other-input" placeholder="具体的に教えてください">
       <div class="error-msg" id="err_q2">選択してください</div>
     </div>
   </div>
 
-  <!-- ===== Step 3: Q3 未来の可能性 ===== -->
   <div class="step" id="s3">
     <div class="card">
       <h2>Q3. 今日のワークを通じて、環境新聞社の「未来の可能性」をどのくらい感じましたか？<span class="required">*</span></h2>
@@ -197,7 +166,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
     </div>
   </div>
 
-  <!-- ===== Step 4: Q4 優先課題（複数選択） ===== -->
   <div class="step" id="s4">
     <div class="card">
       <h2>Q4. 今日のワークを通じて、「これは早めに解決しなければ」と感じた課題はどれですか？<span class="required">*</span></h2>
@@ -217,7 +185,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
     </div>
   </div>
 
-  <!-- ===== Step 5: Q5 意思決定の障壁 ===== -->
   <div class="step" id="s5">
     <div class="card">
       <h2>Q5. 今後、新しい取り組みや仕組みを導入するにあたって、最も不安に感じることは何ですか？<span class="required">*</span></h2>
@@ -236,32 +203,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
     </div>
   </div>
 
-  <!-- ===== Step 6: Q6 HubSpotへの期待（任意） ===== -->
   <div class="step" id="s6">
     <div class="card">
       <h2>Q6. HubSpotに期待することがあれば、自由にお聞かせください。</h2>
       <p class="sub">任意回答です。どんな小さなことでも構いません。</p>
       <div class="field">
-        <textarea id="q6_text" placeholder="例：5媒体のデータをひとつに繋げて、読者の動きが見えるようになったら面白そう。マッチングイベントの仕組みづくりにも活かせそうだと感じた。" oninput="cc(this,'cnt_q6')"></textarea>
+        <textarea id="q6_text" placeholder="例：5媒体のデータをひとつに繋げて、読者の動きが見えるようになったら面白そう。" oninput="cc(this,'cnt_q6')"></textarea>
         <div class="char-count" id="cnt_q6">0 文字</div>
       </div>
     </div>
   </div>
 
-  <!-- ===== Step 7: Q7 自由記述（必須） ===== -->
   <div class="step" id="s7">
     <div class="card">
       <h2>Q7. 今日のワークショップの感想をお聞かせください。<span class="required">*</span></h2>
       <p class="sub">率直なご意見をお願いします。</p>
       <div class="field">
-        <textarea id="q7_text" placeholder="例：自分たちの強みや可能性を改めて言語化できてよかった。普段は別々に動いている媒体のメンバーと一緒に考えられて新鮮だった。" oninput="cc(this,'cnt_q7')"></textarea>
+        <textarea id="q7_text" placeholder="例：自分たちの強みや可能性を改めて言語化できてよかった。" oninput="cc(this,'cnt_q7')"></textarea>
         <div class="char-count" id="cnt_q7">0 文字</div>
       </div>
       <div class="error-msg" id="err_q7">入力してください</div>
     </div>
   </div>
 
-  <!-- ===== Step 8: 完了 ===== -->
   <div class="step" id="s8">
     <div class="card">
       <div class="done-wrap">
@@ -281,9 +245,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP'
 </div>
 
 <script>
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwAt2pgNdurxebqR0D9ZrDtLmcoO3i8UpVlNwmvf-j-dKSgtLrVadgt7JZIjsLFw2F2/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbyoagmKGyzQMphtTmL8wqLWwFUgSfOQf5WsMJgILhsr0VPouSeU9xQVCMB1y9TiGn6_/exec';
 let cur = 0;
-const N = 9; // s0〜s8
+const N = 9;
 const steps = document.querySelectorAll('.step');
 
 function upd() {
@@ -297,10 +261,9 @@ function upd() {
   else { bn.textContent = '次へ →'; bn.className = 'btn btn-pri'; }
 }
 
-// ── バリデーション ──
 function validate(step) {
   if (step === 0) {
-    const last  = document.getElementById('p_last').value.trim();
+    const last = document.getElementById('p_last').value.trim();
     const first = document.getElementById('p_first').value.trim();
     const email = document.getElementById('p_email').value.trim();
     const media = document.querySelectorAll('#media_tags .tag.on').length > 0;
@@ -308,32 +271,12 @@ function validate(step) {
     document.getElementById('err_p').classList.toggle('show', !ok);
     return ok;
   }
-  if (step === 1) {
-    const ok = !!getScale('q1');
-    document.getElementById('err_q1').classList.toggle('show', !ok);
-    return ok;
-  }
-  if (step === 2) {
-    const ok = document.querySelector('#q2_opts .opt.on') !== null;
-    document.getElementById('err_q2').classList.toggle('show', !ok);
-    return ok;
-  }
-  if (step === 3) {
-    const ok = !!getScale('q3');
-    document.getElementById('err_q3').classList.toggle('show', !ok);
-    return ok;
-  }
-  if (step === 4) {
-    const ok = document.querySelectorAll('#q4_opts .opt.on').length > 0;
-    document.getElementById('err_q4').classList.toggle('show', !ok);
-    return ok;
-  }
-  if (step === 5) {
-    const ok = document.querySelector('#q5_opts .opt.on') !== null;
-    document.getElementById('err_q5').classList.toggle('show', !ok);
-    return ok;
-  }
-  if (step === 6) return true; // Q6 任意
+  if (step === 1) { const ok = !!getScale('q1'); document.getElementById('err_q1').classList.toggle('show', !ok); return ok; }
+  if (step === 2) { const ok = document.querySelector('#q2_opts .opt.on') !== null; document.getElementById('err_q2').classList.toggle('show', !ok); return ok; }
+  if (step === 3) { const ok = !!getScale('q3'); document.getElementById('err_q3').classList.toggle('show', !ok); return ok; }
+  if (step === 4) { const ok = document.querySelectorAll('#q4_opts .opt.on').length > 0; document.getElementById('err_q4').classList.toggle('show', !ok); return ok; }
+  if (step === 5) { const ok = document.querySelector('#q5_opts .opt.on') !== null; document.getElementById('err_q5').classList.toggle('show', !ok); return ok; }
+  if (step === 6) return true;
   if (step === 7) {
     const ok = document.getElementById('q7_text').value.trim().length > 0;
     document.getElementById('err_q7').classList.toggle('show', !ok);
@@ -350,7 +293,6 @@ function next() {
 }
 function back() { if (cur > 0) { cur--; upd(); } }
 
-// ── 送信 ──
 async function submit() {
   document.getElementById('overlay').classList.add('show');
   document.getElementById('btn_next').disabled = true;
@@ -368,11 +310,6 @@ async function submit() {
     q6_hubspot:   document.getElementById('q6_text').value.trim(),
     q7_comment:   document.getElementById('q7_text').value.trim(),
   };
-  if (GAS_URL === 'https://script.google.com/macros/s/AKfycbwAt2pgNdurxebqR0D9ZrDtLmcoO3i8UpVlNwmvf-j-dKSgtLrVadgt7JZIjsLFw2F2/exec') {
-    await new Promise(r => setTimeout(r, 600));
-    document.getElementById('overlay').classList.remove('show');
-    cur = N - 1; upd(); return;
-  }
   try {
     await fetch(GAS_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
   } catch(e) {}
@@ -380,11 +317,9 @@ async function submit() {
   cur = N - 1; upd();
 }
 
-// ── ユーティリティ ──
 function pickScale(el, g) {
   document.querySelectorAll(`#${g}_scale .scale-opt`).forEach(e => e.classList.remove('on'));
-  el.classList.add('on');
-  clearErr(g);
+  el.classList.add('on'); clearErr(g);
 }
 function getScale(g) {
   const el = document.querySelector(`#${g}_scale .scale-opt.on`);
@@ -393,19 +328,14 @@ function getScale(g) {
 function selectOpt(el, groupId) {
   document.querySelectorAll(`#${groupId} .opt`).forEach(e => e.classList.remove('on'));
   el.classList.add('on');
-  // 「その他」以外が選ばれたらinputを隠す
   const otherId = groupId.replace('_opts','_other');
   const inp = document.getElementById(otherId);
-  if (inp) {
-    const isOther = el.querySelector('.opt-main').textContent.trim().startsWith('その他');
-    inp.classList.toggle('show', isOther);
-  }
+  if (inp) { const isOther = el.querySelector('.opt-main').textContent.trim().startsWith('その他'); inp.classList.toggle('show', isOther); }
   clearErr(groupId.replace('_opts',''));
 }
 function getOptText(groupId) {
   const el = document.querySelector(`#${groupId} .opt.on`);
   if (!el) return '';
-  // span.opt-labelを除いたテキストを取得
   const main = el.querySelector('.opt-main');
   return [...main.childNodes].filter(n => n.nodeType === 3 || (n.tagName && n.tagName !== 'SMALL' && n.tagName !== 'SPAN')).map(n => n.textContent.trim()).join('').trim() ||
          main.textContent.replace(/[①②③✓0]/g,'').trim().split('\n')[0].trim();
@@ -415,14 +345,8 @@ function toggleInput(inputId, el) {
   if (!inp) return;
   inp.classList.toggle('show', el.classList.contains('on'));
 }
-function clearErr(key) {
-  const el = document.getElementById('err_' + key);
-  if (el) el.classList.remove('show');
-}
-function cc(el, id) {
-  document.getElementById(id).textContent = el.value.length + ' 文字';
-  el.classList.remove('error');
-}
+function clearErr(key) { const el = document.getElementById('err_' + key); if (el) el.classList.remove('show'); }
+function cc(el, id) { document.getElementById(id).textContent = el.value.length + ' 文字'; el.classList.remove('error'); }
 </script>
 </body>
 </html>
