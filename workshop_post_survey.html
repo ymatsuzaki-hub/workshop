@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ワークショップ振り返りアンケート｜環境新聞社</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;background:#F5F8FA;color:#042729;font-size:15px;line-height:1.7}
+.outer{max-width:640px;margin:0 auto;padding:2rem 1rem 4rem}
+.header{margin-bottom:1.5rem}
+.header h1{font-size:20px;font-weight:600;color:#042729;margin-bottom:0.25rem}
+.header p{font-size:13px;color:#6b8a8c}
+.progress-wrap{margin-bottom:2rem}
+.progress-bar{height:4px;background:#DDE5EE;border-radius:2px}
+.progress-fill{height:100%;background:#FF4800;border-radius:2px;transition:width 0.4s ease}
+.progress-label{font-size:12px;color:#6b8a8c;margin-top:6px;text-align:right}
+.card{background:#fff;border:1px solid #DDE5EE;border-radius:12px;padding:1.5rem;margin-bottom:1.25rem}
+.card h2{font-size:17px;font-weight:600;color:#042729;margin-bottom:0.35rem}
+.card .sub{font-size:13px;color:#4a6b6d;margin-bottom:1.25rem;line-height:1.6}
+.required{color:#FF4800;margin-left:3px;font-size:13px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:13px;font-weight:600;color:#042729;margin-bottom:5px}
+.field input[type=text]{width:100%;padding:10px 12px;font-size:14px;border:1px solid #DDE5EE;border-radius:8px;background:#fff;color:#042729;outline:none;transition:border-color 0.15s}
+.field input[type=text]:focus{border-color:#FF4800;box-shadow:0 0 0 3px rgba(255,72,0,0.1)}
+.field input.error{border-color:#E53E3E;}
+.field textarea{width:100%;padding:10px 12px;font-size:14px;border:1px solid #DDE5EE;border-radius:8px;background:#fff;color:#042729;outline:none;resize:vertical;min-height:88px;line-height:1.6;transition:border-color 0.15s}
+.field textarea:focus{border-color:#FF4800;box-shadow:0 0 0 3px rgba(255,72,0,0.1)}
+.field textarea.error{border-color:#E53E3E;}
+.tag-group{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+.tag{padding:6px 13px;font-size:13px;border:1px solid #DDE5EE;border-radius:20px;cursor:pointer;background:#fff;color:#042729;transition:all 0.15s;user-select:none}
+.tag:hover{border-color:#FF4800;color:#FF4800}
+.tag.on{border-color:#FF4800;background:rgba(255,72,0,0.07);color:#FF4800;font-weight:600}
+.char-count{font-size:11px;color:#9bb5b7;text-align:right;margin-top:3px}
+.scale-wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:0.5rem}
+.scale-opt{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;user-select:none}
+.scale-circle{width:44px;height:44px;border-radius:50%;border:2px solid #DDE5EE;background:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#4A6B6D;transition:all 0.15s}
+.scale-opt:hover .scale-circle{border-color:#FF4800;color:#FF4800}
+.scale-opt.on .scale-circle{border-color:#FF4800;background:#FF4800;color:#fff}
+.scale-label{font-size:10px;color:#6b8a8c;text-align:center;line-height:1.3}
+.opts{display:grid;gap:8px;margin-top:0.5rem}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:1px solid #DDE5EE;border-radius:8px;cursor:pointer;transition:all 0.15s;user-select:none;background:#fff}
+.opt:hover{border-color:#aac4c6;background:#f7fafb}
+.opt.on{border-color:#FF4800;background:rgba(255,72,0,0.04)}
+.dot{width:17px;height:17px;border-radius:50%;border:1.5px solid #c8d8da;flex-shrink:0;margin-top:2px;transition:all 0.15s;display:flex;align-items:center;justify-content:center}
+.opt.on .dot{border-color:#FF4800;background:#FF4800}
+.dot-inner{width:7px;height:7px;border-radius:50%;background:white;display:none}
+.opt.on .dot-inner{display:block}
+.chk{width:17px;height:17px;border-radius:4px;border:1.5px solid #c8d8da;flex-shrink:0;margin-top:2px;transition:all 0.15s;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;font-weight:700}
+.opt.on .chk{border-color:#FF4800;background:#FF4800;color:white}
+.opt-label{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;margin-right:6px;vertical-align:middle;display:inline-block}
+.lbl-0{background:#E8F5E9;color:#2E7D32}
+.lbl-1{background:#E3F2FD;color:#1565C0}
+.lbl-2{background:#FFF3E0;color:#E65100}
+.lbl-3{background:#F3E5F5;color:#6A1B9A}
+.lbl-c{background:#ECEFF1;color:#546E7A}
+.opt-main{font-size:14px;color:#042729;line-height:1.4}
+.opt-main small{display:block;font-size:12px;color:#6b8a8c;margin-top:1px}
+.other-input{width:100%;margin-top:8px;padding:8px 10px;font-size:13px;border:1px solid #DDE5EE;border-radius:6px;outline:none;transition:border-color 0.15s;display:none}
+.other-input:focus{border-color:#FF4800}
+.other-input.show{display:block}
+.error-msg{font-size:12px;color:#E53E3E;margin-top:6px;display:none}
+.error-msg.show{display:block}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-top:2rem}
+.btn{padding:10px 22px;font-size:14px;font-weight:600;border-radius:8px;border:1.5px solid #DDE5EE;background:#fff;color:#042729;cursor:pointer;transition:all 0.15s}
+.btn:hover{background:#F5F8FA}
+.btn-pri{background:#FF4800;border-color:#FF4800;color:white}
+.btn-pri:hover{background:#e04000}
+.btn-dark{background:#042729;border-color:#042729;color:white}
+.btn-dark:hover{background:#021e20}
+.step{display:none}
+.step.active{display:block}
+.done-wrap{text-align:center;padding:2.5rem 1rem}
+.done-icon{width:56px;height:56px;border-radius:50%;background:rgba(255,72,0,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.done-icon svg{width:28px;height:28px;stroke:#FF4800;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.overlay{display:none;position:fixed;inset:0;background:rgba(4,39,41,0.45);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:1rem}
+.overlay.show{display:flex}
+.spinner{width:40px;height:40px;border:3px solid rgba(255,255,255,0.3);border-top-color:#FF4800;border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.overlay p{color:white;font-size:14px;font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"><div class="spinner"></div><p>送信中...</p></div>
+
+<div class="outer">
+  <div class="header">
+    <h1>ワークショップ振り返りアンケート</h1>
+    <p>環境新聞社 × HubSpot｜所要時間 3〜5分</p>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:11%"></div></div>
+    <div class="progress-label" id="prog-label">STEP 1 / 9</div>
+  </div>
+
+  <!-- ===== Step 0: プロフィール ===== -->
+  <div class="step active" id="s0">
+    <div class="card">
+      <h2>はじめに、あなたのことを教えてください</h2>
+      <p class="sub">回答と紐づけて活用します。</p>
+      <div class="row2">
+        <div class="field">
+          <label>姓<span class="required">*</span></label>
+          <input type="text" id="p_last" placeholder="例：田中">
+        </div>
+        <div class="field">
+          <label>名<span class="required">*</span></label>
+          <input type="text" id="p_first" placeholder="例：太郎">
+        </div>
+      </div>
+      <div class="field">
+        <label>メールアドレス<span class="required">*</span></label>
+        <input type="text" id="p_email" placeholder="例：tanaka@kankyo-news.co.jp">
+      </div>
+      <div class="field">
+        <label>担当メディア（複数可）<span class="required">*</span></label>
+        <div class="tag-group" id="media_tags">
+          <div class="tag" onclick="this.classList.toggle('on')">環境新聞紙面</div>
+          <div class="tag" onclick="this.classList.toggle('on')">環境新聞オンライン</div>
+          <div class="tag" onclick="this.classList.toggle('on')">シルバー新報</div>
+          <div class="tag" onclick="this.classList.toggle('on')">月刊下水道</div>
+          <div class="tag" onclick="this.classList.toggle('on')">月刊ケアマネジメント</div>
+          <div class="tag" onclick="this.classList.toggle('on')">全社横断</div>
+        </div>
+      </div>
+      <div class="error-msg" id="err_p">すべての項目を入力・選択してください</div>
+    </div>
+  </div>
+
+  <!-- ===== Step 1: Q1 全体満足度 ===== -->
+  <div class="step" id="s1">
+    <div class="card">
+      <h2>Q1. 今日のワークショップ全体を通じて、満足度はどのくらいでしたか？<span class="required">*</span></h2>
+      <p class="sub">1（期待を下回った）〜 5（期待以上だった）で教えてください。</p>
+      <div class="scale-wrap" id="q1_scale">
+        <div class="scale-opt" onclick="pickScale(this,'q1')"><div class="scale-circle">1</div><div class="scale-label">期待を<br>下回った</div></div>
+        <div class="scale-opt" onclick="pickScale(this,'q1')"><div class="scale-circle">2</div><div class="scale-label"></div></div>
+        <div class="scale-opt" onclick="pickScale(this,'q1')"><div class="scale-circle">3</div><div class="scale-label">どちらとも<br>いえない</div></div>
+        <div class="scale-opt" onclick="pickScale(this,'q1')"><div class="scale-circle">4</div><div class="scale-label"></div></div>
+        <div class="scale-opt" onclick="pickScale(this,'q1')"><div class="scale-circle">5</div><div class="scale-label">期待<br>以上だった</div></div>
+      </div>
+      <div class="error-msg" id="err_q1">選択してください</div>
+    </div>
+  </div>
+
+  <!-- ===== Step 2: Q2 一番刺さったパート ===== -->
+  <div class="step" id="s2">
+    <div class="card">
+      <h2>Q2. 今日のワークの中で、最も「ハッとした」パートはどれでしたか？<span class="required">*</span></h2>
+      <p class="sub">1つ選んでください。</p>
+      <div class="opts" id="q2_opts">
+        <div class="opt" onclick="selectOpt(this,'q2_opts')">
+          <div class="dot"><div class="dot-inner"></div></div>
+          <div class="opt-main"><span class="opt-label lbl-0">0</span>アイスブレイク・事前回答共有<small>回答の傾向を見て気づいたこと</small></div>
+        </div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts')">
+          <div class="dot"><div class="dot-inner"></div></div>
+          <div class="opt-main"><span class="opt-label lbl-1">①</span>メディアの方向性整理<small>顧客像・本質価値・ビジョンを言語化した</small></div>
+        </div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts')">
+          <div class="dot"><div class="dot-inner"></div></div>
+          <div class="opt-main"><span class="opt-label lbl-2">②</span>業務課題の洗い出し<small>ペインポイントや優先課題を整理した</small></div>
+        </div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts')">
+          <div class="dot"><div class="dot-inner"></div></div>
+          <div class="opt-main"><span class="opt-label lbl-3">③</span>企業価値創造ワークショップ<small>自社の強み・価値・可能性を再確認した</small></div>
+        </div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts')">
+          <div class="dot"><div class="dot-inner"></div></div>
+          <div class="opt-main"><span class="opt-label lbl-c">✓</span>まとめ・ネクストステップ<small>合意事項と次のアクションが明確になった</small></div>
+        </div>
+        <div class="opt" onclick="selectOpt(this,'q2_opts');toggleInput('q2_other',this)">
+          <div class="dot"><div class="dot-inner"></div></div>
+          <div class="opt-main">その他</div>
+        </div>
+      </div>
+      <input type="text" id="q2_other" class="other-input" placeholder="具体的に教えてください">
+      <div class="error-msg" id="err_q2">選択してください</div>
+    </div>
+  </div>
+
+  <!-- ===== Step 3: Q3 未来の可能性 ===== -->
+  <div class="step" id="s3">
+    <div class="card">
+      <h2>Q3. 今日のワークを通じて、環境新聞社の「未来の可能性」をどのくらい感じましたか？<span class="required">*</span></h2>
+      <p class="sub">1（感じなかった）〜 5（強く感じた）で教えてください。</p>
+      <div class="scale-wrap" id="q3_scale">
+        <div class="scale-opt" onclick="pickScale(this,'q3')"><div class="scale-circle">1</div><div class="scale-label">感じ<br>なかった</div></div>
+        <div class="scale-opt" onclick="pickScale(this,'q3')"><div class="scale-circle">2</div><div class="scale-label"></div></div>
+        <div class="scale-opt" onclick="pickScale(this,'q3')"><div class="scale-circle">3</div><div class="scale-label">どちらとも<br>いえない</div></div>
+        <div class="scale-opt" onclick="pickScale(this,'q3')"><div class="scale-circle">4</div><div class="scale-label"></div></div>
+        <div class="scale-opt" onclick="pickScale(this,'q3')"><div class="scale-circle">5</div><div class="scale-label">強く<br>感じた</div></div>
+      </div>
+      <div class="error-msg" id="err_q3">選択してください</div>
+    </div>
+  </div>
+
+  <!-- ===== Step 4: Q4 優先課題（複数選択） ===== -->
+  <div class="step" id="s4">
+    <div class="card">
+      <h2>Q4. 今日のワークを通じて、「これは早めに解決しなければ」と感じた課題はどれですか？<span class="required">*</span></h2>
+      <p class="sub">あてはまるものをすべて選んでください。</p>
+      <div class="opts" id="q4_opts">
+        <div class="opt" onclick="this.classList.toggle('on');clearErr('q4')"><div class="chk">✓</div><div class="opt-main">5媒体の顧客データがバラバラで一元管理できていない</div></div>
+        <div class="opt" onclick="this.classList.toggle('on');clearErr('q4')"><div class="chk">✓</div><div class="opt-main">業務が属人的で、担当者が変わると情報・人脈が失われる</div></div>
+        <div class="opt" onclick="this.classList.toggle('on');clearErr('q4')"><div class="chk">✓</div><div class="opt-main">媒体間の横連携がなく、読者・広告主の接点が活かせていない</div></div>
+        <div class="opt" onclick="this.classList.toggle('on');clearErr('q4')"><div class="chk">✓</div><div class="opt-main">社内でビジョン・方向性が統一されていない</div></div>
+        <div class="opt" onclick="this.classList.toggle('on');clearErr('q4')"><div class="chk">✓</div><div class="opt-main">Webやデジタルへの対応・情報発信が遅れている</div></div>
+        <div class="opt" onclick="this.classList.toggle('on');clearErr('q4')"><div class="chk">✓</div><div class="opt-main">新規の収益源（イベント・書籍・Web有料会員など）が育っていない</div></div>
+        <div class="opt" onclick="this.classList.toggle('on');clearErr('q4')"><div class="chk">✓</div><div class="opt-main">システム・ツールがバラバラで連携が取れていない</div></div>
+        <div class="opt" onclick="this.classList.toggle('on');clearErr('q4');toggleInput('q4_other',this)"><div class="chk">✓</div><div class="opt-main">その他</div></div>
+      </div>
+      <input type="text" id="q4_other" class="other-input" placeholder="具体的に教えてください">
+      <div class="error-msg" id="err_q4">1つ以上選択してください</div>
+    </div>
+  </div>
+
+  <!-- ===== Step 5: Q5 意思決定の障壁 ===== -->
+  <div class="step" id="s5">
+    <div class="card">
+      <h2>Q5. 今後、新しい取り組みや仕組みを導入するにあたって、最も不安に感じることは何ですか？<span class="required">*</span></h2>
+      <p class="sub">1つ選んでください。</p>
+      <div class="opts" id="q5_opts">
+        <div class="opt" onclick="selectOpt(this,'q5_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main">コスト・費用対効果が見えない</div></div>
+        <div class="opt" onclick="selectOpt(this,'q5_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main">導入・運用に手間がかかりそう（現場への負担）</div></div>
+        <div class="opt" onclick="selectOpt(this,'q5_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main">経営陣・社内の理解・合意が得られるか</div></div>
+        <div class="opt" onclick="selectOpt(this,'q5_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main">自社の規模・業種に本当に合っているか分からない</div></div>
+        <div class="opt" onclick="selectOpt(this,'q5_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main">まず社内の業務・体制を整えることが先決</div></div>
+        <div class="opt" onclick="selectOpt(this,'q5_opts')"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main">特に不安はない・前向きに動きたい</div></div>
+        <div class="opt" onclick="selectOpt(this,'q5_opts');toggleInput('q5_other',this)"><div class="dot"><div class="dot-inner"></div></div><div class="opt-main">その他</div></div>
+      </div>
+      <input type="text" id="q5_other" class="other-input" placeholder="具体的に教えてください">
+      <div class="error-msg" id="err_q5">選択してください</div>
+    </div>
+  </div>
+
+  <!-- ===== Step 6: Q6 HubSpotへの期待（任意） ===== -->
+  <div class="step" id="s6">
+    <div class="card">
+      <h2>Q6. HubSpotに期待することがあれば、自由にお聞かせください。</h2>
+      <p class="sub">任意回答です。どんな小さなことでも構いません。</p>
+      <div class="field">
+        <textarea id="q6_text" placeholder="例：5媒体のデータをひとつに繋げて、読者の動きが見えるようになったら面白そう。マッチングイベントの仕組みづくりにも活かせそうだと感じた。" oninput="cc(this,'cnt_q6')"></textarea>
+        <div class="char-count" id="cnt_q6">0 文字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Step 7: Q7 自由記述（必須） ===== -->
+  <div class="step" id="s7">
+    <div class="card">
+      <h2>Q7. 今日のワークショップの感想をお聞かせください。<span class="required">*</span></h2>
+      <p class="sub">率直なご意見をお願いします。</p>
+      <div class="field">
+        <textarea id="q7_text" placeholder="例：自分たちの強みや可能性を改めて言語化できてよかった。普段は別々に動いている媒体のメンバーと一緒に考えられて新鮮だった。" oninput="cc(this,'cnt_q7')"></textarea>
+        <div class="char-count" id="cnt_q7">0 文字</div>
+      </div>
+      <div class="error-msg" id="err_q7">入力してください</div>
+    </div>
+  </div>
+
+  <!-- ===== Step 8: 完了 ===== -->
+  <div class="step" id="s8">
+    <div class="card">
+      <div class="done-wrap">
+        <div class="done-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div style="font-size:19px;font-weight:700;color:#042729;margin-bottom:0.5rem">送信完了しました</div>
+        <div style="font-size:14px;color:#4a6b6d;line-height:1.7;max-width:360px;margin:0 auto">
+          ご回答ありがとうございました。<br>今日のワークショップの内容をもとに、次回より具体的なご提案をお持ちします。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav" id="nav">
+    <button class="btn" id="btn_back" onclick="back()" style="visibility:hidden">← 戻る</button>
+    <button class="btn btn-pri" id="btn_next" onclick="next()">次へ →</button>
+  </div>
+</div>
+
+<script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwAt2pgNdurxebqR0D9ZrDtLmcoO3i8UpVlNwmvf-j-dKSgtLrVadgt7JZljsLFw2F2/exec';
+let cur = 0;
+const N = 9; // s0〜s8
+const steps = document.querySelectorAll('.step');
+
+function upd() {
+  steps.forEach((s, i) => s.classList.toggle('active', i === cur));
+  document.getElementById('prog').style.width = ((cur + 1) / N * 100) + '%';
+  document.getElementById('prog-label').textContent = 'STEP ' + (cur + 1) + ' / ' + (N - 1);
+  document.getElementById('btn_back').style.visibility = cur === 0 ? 'hidden' : 'visible';
+  const bn = document.getElementById('btn_next');
+  if (cur === N - 2) { bn.textContent = '送信する ✓'; bn.className = 'btn btn-dark'; }
+  else if (cur === N - 1) { document.getElementById('nav').style.display = 'none'; }
+  else { bn.textContent = '次へ →'; bn.className = 'btn btn-pri'; }
+}
+
+// ── バリデーション ──
+function validate(step) {
+  if (step === 0) {
+    const last  = document.getElementById('p_last').value.trim();
+    const first = document.getElementById('p_first').value.trim();
+    const email = document.getElementById('p_email').value.trim();
+    const media = document.querySelectorAll('#media_tags .tag.on').length > 0;
+    const ok = last && first && email.includes('@') && media;
+    document.getElementById('err_p').classList.toggle('show', !ok);
+    return ok;
+  }
+  if (step === 1) {
+    const ok = !!getScale('q1');
+    document.getElementById('err_q1').classList.toggle('show', !ok);
+    return ok;
+  }
+  if (step === 2) {
+    const ok = document.querySelector('#q2_opts .opt.on') !== null;
+    document.getElementById('err_q2').classList.toggle('show', !ok);
+    return ok;
+  }
+  if (step === 3) {
+    const ok = !!getScale('q3');
+    document.getElementById('err_q3').classList.toggle('show', !ok);
+    return ok;
+  }
+  if (step === 4) {
+    const ok = document.querySelectorAll('#q4_opts .opt.on').length > 0;
+    document.getElementById('err_q4').classList.toggle('show', !ok);
+    return ok;
+  }
+  if (step === 5) {
+    const ok = document.querySelector('#q5_opts .opt.on') !== null;
+    document.getElementById('err_q5').classList.toggle('show', !ok);
+    return ok;
+  }
+  if (step === 6) return true; // Q6 任意
+  if (step === 7) {
+    const ok = document.getElementById('q7_text').value.trim().length > 0;
+    document.getElementById('err_q7').classList.toggle('show', !ok);
+    document.getElementById('q7_text').classList.toggle('error', !ok);
+    return ok;
+  }
+  return true;
+}
+
+function next() {
+  if (!validate(cur)) return;
+  if (cur === N - 2) { submit(); return; }
+  cur++; upd();
+}
+function back() { if (cur > 0) { cur--; upd(); } }
+
+// ── 送信 ──
+async function submit() {
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('btn_next').disabled = true;
+  const data = {
+    timestamp:    new Date().toLocaleString('ja-JP'),
+    type:         'post_workshop',
+    name:         document.getElementById('p_last').value.trim() + ' ' + document.getElementById('p_first').value.trim(),
+    email:        document.getElementById('p_email').value.trim(),
+    media:        [...document.querySelectorAll('#media_tags .tag.on')].map(t => t.textContent).join(', '),
+    q1_overall:   getScale('q1'),
+    q2_best_part: getOptText('q2_opts') + (document.getElementById('q2_other').value.trim() ? '：' + document.getElementById('q2_other').value.trim() : ''),
+    q3_pos:       getScale('q3'),
+    q4_issues:    [...document.querySelectorAll('#q4_opts .opt.on')].map(o => o.querySelector('.opt-main').childNodes[0].textContent.trim()).join(' / ') + (document.getElementById('q4_other').value.trim() ? ' / その他：' + document.getElementById('q4_other').value.trim() : ''),
+    q5_barrier:   getOptText('q5_opts') + (document.getElementById('q5_other').value.trim() ? '：' + document.getElementById('q5_other').value.trim() : ''),
+    q6_hubspot:   document.getElementById('q6_text').value.trim(),
+    q7_comment:   document.getElementById('q7_text').value.trim(),
+  };
+  if (GAS_URL === 'https://script.google.com/macros/s/AKfycbwAt2pgNdurxebqR0D9ZrDtLmcoO3i8UpVlNwmvf-j-dKSgtLrVadgt7JZljsLFw2F2/exec') {
+    await new Promise(r => setTimeout(r, 600));
+    document.getElementById('overlay').classList.remove('show');
+    cur = N - 1; upd(); return;
+  }
+  try {
+    await fetch(GAS_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
+  } catch(e) {}
+  document.getElementById('overlay').classList.remove('show');
+  cur = N - 1; upd();
+}
+
+// ── ユーティリティ ──
+function pickScale(el, g) {
+  document.querySelectorAll(`#${g}_scale .scale-opt`).forEach(e => e.classList.remove('on'));
+  el.classList.add('on');
+  clearErr(g);
+}
+function getScale(g) {
+  const el = document.querySelector(`#${g}_scale .scale-opt.on`);
+  return el ? el.querySelector('.scale-circle').textContent.trim() : '';
+}
+function selectOpt(el, groupId) {
+  document.querySelectorAll(`#${groupId} .opt`).forEach(e => e.classList.remove('on'));
+  el.classList.add('on');
+  // 「その他」以外が選ばれたらinputを隠す
+  const otherId = groupId.replace('_opts','_other');
+  const inp = document.getElementById(otherId);
+  if (inp) {
+    const isOther = el.querySelector('.opt-main').textContent.trim().startsWith('その他');
+    inp.classList.toggle('show', isOther);
+  }
+  clearErr(groupId.replace('_opts',''));
+}
+function getOptText(groupId) {
+  const el = document.querySelector(`#${groupId} .opt.on`);
+  if (!el) return '';
+  // span.opt-labelを除いたテキストを取得
+  const main = el.querySelector('.opt-main');
+  return [...main.childNodes].filter(n => n.nodeType === 3 || (n.tagName && n.tagName !== 'SMALL' && n.tagName !== 'SPAN')).map(n => n.textContent.trim()).join('').trim() ||
+         main.textContent.replace(/[①②③✓0]/g,'').trim().split('\n')[0].trim();
+}
+function toggleInput(inputId, el) {
+  const inp = document.getElementById(inputId);
+  if (!inp) return;
+  inp.classList.toggle('show', el.classList.contains('on'));
+}
+function clearErr(key) {
+  const el = document.getElementById('err_' + key);
+  if (el) el.classList.remove('show');
+}
+function cc(el, id) {
+  document.getElementById(id).textContent = el.value.length + ' 文字';
+  el.classList.remove('error');
+}
+</script>
+</body>
+</html>
